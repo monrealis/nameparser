@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class MultiNamesReader {
 	private final List<InputStream> inputs = new ArrayList<InputStream>();
@@ -54,6 +56,14 @@ public class MultiNamesReader {
 		}
 		Collections.sort(names);
 		return Collections.unmodifiableList(names);
+	}
+
+	public Set<Character> getUniqueChars() {
+		Set<Character> chars = new TreeSet<Character>();
+		for (NamesReader r : readers) {
+			chars.addAll(r.getUniqueChars());
+		}
+		return chars;
 	}
 
 }

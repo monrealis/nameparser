@@ -16,7 +16,6 @@ import org.junit.Test;
 
 public class NamesReaderTest {
 	private static final List<String> EMPTY = Collections.<String> emptyList();
-	private String letters = "aąbcčdeęėfghiįyjklmnoprsštuųūvzžAĄBCČDEĘĖFGHIĮYJKLMNOPRSŠTUŲŪVZŽ";
 
 	@Test
 	public void namesAreNotEmpty() {
@@ -49,12 +48,8 @@ public class NamesReaderTest {
 	@Test
 	public void namesContainOnlyLtLetters() {
 		Set<Character> set = new TreeSet<Character>(execute().getUniqueChars());
-		for (char letter : letters.toCharArray()) {
-			set.remove(letter);
-		}
-		for (char c : set) {
-			System.out.println((int) c);
-		}
+		CharUtils.removeLtLetters(set);
+		CharUtils.dump(set);
 		assertEquals(Collections.emptySet(), set);
 	}
 

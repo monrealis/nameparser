@@ -32,7 +32,6 @@ public class NamesReader {
 		loadInvalidElements();
 		fillNames();
 		fillInvalidNames();
-		//dump(allNames);
 		return this;
 	}
 
@@ -79,7 +78,7 @@ public class NamesReader {
 	}
 
 	private String toName(String text) {
-		char[] invalid = { 242, 768, 769, 771 };
+		char[] invalid = { 227, 242, 768, 769, 771, 7869 };
 		Arrays.sort(invalid);
 		char[] r = new char[text.length()];
 		int next = 0;

@@ -1,6 +1,11 @@
 package eu.vytenis.namesparser;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
+import java.util.Collections;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
@@ -16,6 +21,14 @@ public class MultiNamesReaderTest {
 	@Test
 	public void namesContainVytenis() {
 		assertTrue(execute().getNames().contains("Vytenis"));
+	}
+
+	@Test
+	public void namesContainOnlyLtLetters() {
+		Set<Character> set = new TreeSet<Character>(execute().getUniqueChars());
+		CharUtils.removeLtLetters(set);
+		CharUtils.dump(set);
+		assertEquals(Collections.emptySet(), set);
 	}
 
 	private MultiNamesReader execute() {
