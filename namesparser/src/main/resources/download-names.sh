@@ -6,6 +6,6 @@ for letter in $(echo $letters | grep -o .) ; do
 	if [ "$letter" = "š" ] ; then letter="s-2"; fi
 	url=$(printf "http://vardai.vlkk.lt/sarasas/%s/" $letter)
 	echo $url  
-	curl --silent $url > $letter.html
+	curl --silent $url > input/$letter.html
 	sleep 2
 done
