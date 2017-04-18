@@ -1,5 +1,6 @@
 package eu.vytenis.namesparser;
 
+import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -27,6 +28,7 @@ public class MultiNamesReaderTest {
 		Set<Character> letters = new TreeSet<Character>(execute().getUniqueChars());
 		CharUtils.removeLtLetters(letters);
 		CharUtils.removeStressedLetters(letters);
+		letters.removeAll(asList(' '));
 		CharUtils.dump(letters);
 		assertEquals(Collections.emptySet(), letters);
 	}
