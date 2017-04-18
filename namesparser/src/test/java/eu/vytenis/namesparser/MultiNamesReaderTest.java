@@ -11,7 +11,6 @@ import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 public class MultiNamesReaderTest {
-
 	@Test
 	public void printNames() {
 		String names = StringUtils.join(execute().getNames(), "\n");
@@ -25,15 +24,15 @@ public class MultiNamesReaderTest {
 
 	@Test
 	public void namesContainOnlyLtLetters() {
-		Set<Character> set = new TreeSet<Character>(execute().getUniqueChars());
-		CharUtils.removeLtLetters(set);
-		CharUtils.dump(set);
-		assertEquals(Collections.emptySet(), set);
+		Set<Character> letters = new TreeSet<Character>(execute().getUniqueChars());
+		CharUtils.removeLtLetters(letters);
+		CharUtils.removeStressedLetters(letters);
+		CharUtils.dump(letters);
+		assertEquals(Collections.emptySet(), letters);
 	}
 
 	private MultiNamesReader execute() {
-		MultiNamesReader r = MultiNamesReader.create(
-				"src/main/resources/input", "html");
+		MultiNamesReader r = MultiNamesReader.create("src/main/resources/input", "html");
 		r.execute();
 		return r;
 	}
